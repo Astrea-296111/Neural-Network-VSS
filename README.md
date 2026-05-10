@@ -62,8 +62,8 @@ The Notebook contains the following core logical modules (Cells):
 First, pull the project to the local machine, and ensure that the Jupyter environment is installed in your environment.
 
 ```
-$ git clone <你的仓库地址 Your Repository Link>
-$ cd <你的项目目录>
+$ git clone <https://github.com/Astrea-296111/Neural-Network-VSS>
+$ cd <Neural-Network-VSS/>
 
 ```
 
@@ -158,7 +158,7 @@ If you use this project for the experiment of the paper, you can cite this proje
   author       = {Songyi, Liao},
   title        = {MINIST-Neural-SS-Noise: An Adversarial Neural Secret Sharing implementation},
   year         = {2026},
-  howpublished = {\url{[填入您的Github仓库链接]}}
+  howpublished = {\url{https://github.com/Astrea-296111/Neural-Network-VSS}}
 }
 
 ```
