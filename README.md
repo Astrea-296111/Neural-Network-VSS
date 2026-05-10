@@ -1,9 +1,3 @@
-这是一个为您定制的 README.md 文档。它完全参考了您提供的 `param-opt` 项目的结构和双语风格，并根据您上传的 `MINIST_Neural SS_noise_(5,5)-.ipynb` 代码内容进行了针对性提取与改写。
-
-您可以直接将以下内容复制并保存为 `README.md` 文件。
-
----
-
 # MNIST-Neural-SS-Noise
 
 本项目是一个基于深度学习的神经网络秘密共享（Neural Secret Sharing）模型。本项目基于 PyTorch 框架，以 MNIST 数据集为例，不仅实现了图像的分割（编码）与重建（解码），还创新性地引入了多样性正则化（Diversity Loss）与对抗训练机制（Adversarial Noise Induction），通过三阶段训练策略确保在低于门限值时份额呈现显式随机噪声，从而保障信息安全性。
@@ -169,8 +163,8 @@ The author and affiliation of this project:
 
 ```
 项目名称（Project Name）：MINIST-Neural-SS-Noise
-项目作者（Author）：[填入您的名字 Your Name]
-作者单位（Affiliation）：[填入您的单位 Your Affiliation]
+项目作者（Author）：[廖松毅 Songyi Liao]
+作者单位（Affiliation）：[暨南大学网络空间安全学院 College of Cybersecurity, Jinan University]
 
 ```
 
@@ -183,15 +177,14 @@ If you use this project for the experiment of the paper, you can cite this proje
 
 ```
 @misc{neuralss,
-  author       = {[填入作者姓氏的拼音, 名字的拼音 Last Name, First Name]},
+  author       = {[Songyi, Liao]},
   title        = {MINIST-Neural-SS-Noise: An Adversarial Neural Secret Sharing implementation},
-  year         = {2024},
+  year         = {2026},
   howpublished = {\url{[填入您的Github仓库链接]}}
 }
 
 ```
 
 1. [PyTorch Official Documentation](https://www.google.com/search?q=https://pytorch.org/docs/stable/index.html)
-2. [[在此处添加相关论文或灵感来源链接 Add related papers or inspiration links here]](https://www.google.com/search?q=)
 
-[MIT](https://www.google.com/search?q=LICENSE) © 2024 [填入您的名字 Your Name]
+[MIT](https://www.google.com/search?q=LICENSE) © 2026 [廖松毅 Songyi Liao]
