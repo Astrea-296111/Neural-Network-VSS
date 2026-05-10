@@ -14,15 +14,15 @@ This project is a Neural Secret Sharing model based on deep learning. Based on P
 * [模块说明 Module Description](https://www.google.com/search?q=%23%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E-module-description)
 
 
- -* [使用方法 Getting Started](https://www.google.com/search?q=%23%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-getting-started)
- -* [安装方法 Installation](https://www.google.com/search?q=%23%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95-installation)
- -* [训练步骤 Training Steps](https://www.google.com/search?q=%23%E8%AE%AD%E7%BB%83%E6%AD%A5%E9%AA%A4-training-steps)
-  -* [阶段一：Warmup 建立重建能力 Phase 1: Warmup](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%B8%80warmup-%E5%BB%BA%E7%AB%8B%E9%87%8D%E5%BB%BA%E8%83%BD%E5%8A%9B-phase-1-warmup)
-  -* [阶段二：Adversarial 显式噪声诱导 Phase 2: Adversarial](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%BA%8Cadversarial-%E6%98%BE%E5%BC%8F%E5%99%AA%E5%A3%B0%E8%AF%B1%E5%AF%BC-phase-2-adversarial)
-  -* [阶段三：Hardening 门限收紧 Phase 3: Hardening](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%B8%89hardening-%E9%97%A8%E9%99%90%E6%94%B6%E7%B4%A7-phase-3-hardening)
+* [使用方法 Getting Started](https://www.google.com/search?q=%23%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-getting-started)
+* [安装方法 Installation](https://www.google.com/search?q=%23%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95-installation)
+* [训练步骤 Training Steps](https://www.google.com/search?q=%23%E8%AE%AD%E7%BB%83%E6%AD%A5%E9%AA%A4-training-steps)
+* [阶段一：Warmup 建立重建能力 Phase 1: Warmup](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%B8%80warmup-%E5%BB%BA%E7%AB%8B%E9%87%8D%E5%BB%BA%E8%83%BD%E5%8A%9B-phase-1-warmup)
+* [阶段二：Adversarial 显式噪声诱导 Phase 2: Adversarial](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%BA%8Cadversarial-%E6%98%BE%E5%BC%8F%E5%99%AA%E5%A3%B0%E8%AF%B1%E5%AF%BC-phase-2-adversarial)
+* [阶段三：Hardening 门限收紧 Phase 3: Hardening](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%B8%89hardening-%E9%97%A8%E9%99%90%E6%94%B6%E7%B4%A7-phase-3-hardening)
 
 
-  -* [测试与可视化 Testing & Visualization](https://www.google.com/search?q=%23%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96-testing--visualization)
+* [测试与可视化 Testing & Visualization](https://www.google.com/search?q=%23%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96-testing--visualization)
 
 
 * [项目声明 Project Statement](https://www.google.com/search?q=%23%E9%A1%B9%E7%9B%AE%E5%A3%B0%E6%98%8E-project-statement)
