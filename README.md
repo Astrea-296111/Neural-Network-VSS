@@ -1,136 +1,208 @@
+
+
 # MNIST-Neural-SS-Noise
 
-本项目是一个基于深度学习的神经网络秘密共享（Neural Secret Sharing）模型。本项目基于 PyTorch 框架，以 MNIST 数据集为例，不仅实现了图像的分割（编码）与重建（解码），还创新性地引入了多样性正则化（Diversity Loss）与对抗训练机制（Adversarial Noise Induction），通过三阶段训练策略确保在低于门限值时份额呈现显式随机噪声，从而保障信息安全性。
+本项目是一个基于深度学习的神经网络秘密共享（Neural Secret Sharing）模型实现。本项目以 MNIST 数据集为例，实现了 (k,n) 门限方案，通过引入多样性损失（Diversity Loss）和对抗性噪声诱导（Adversarial Noise Induction），确保在份额不足时重建结果为显式噪声，从而保障信息安全。
 
 
 
 
-This project is a Neural Secret Sharing model based on deep learning. Based on PyTorch and taking the MNIST dataset as an example, this project not only implements image splitting (encoding) and reconstruction (decoding), but also innovatively introduces Diversity Loss and adversarial training mechanisms. Through a three-phase training strategy, it ensures that the shares exhibit explicit random noise below the threshold, thereby guaranteeing information security.
+This project is an implementation of a Neural Secret Sharing model based on deep learning. Taking the MNIST dataset as an example, this project implements a (k, n) threshold scheme. By introducing Diversity Loss and Adversarial Noise Induction, it ensures that the reconstruction result is explicit noise when shares are insufficient, thereby guaranteeing information security.
 
 ## 目录 Table of Contents
 
-* [项目结构 Project Structure](https://www.google.com/search?q=%23%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84-project-structure)
-* [核心文件 Core Files](https://www.google.com/search?q=%23%E6%A0%B8%E5%BF%83%E6%96%87%E4%BB%B6-core-files)
-* [模块说明 Module Description](https://www.google.com/search?q=%23%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E-module-description)
+- [项目结构 Project Structure](#项目结构-Project-Structure)
+  - [项目文件 Project Files](#项目文件-Project-Files)
+- [使用方法 Getting Started](#使用方法-Getting-Started)
+  - [安装方法 Installation](#安装方法-Installation)
+  - [代码示例 Core Example](#代码示例-Code-Example)
+  - [训练步骤 Training Steps](#训练步骤-Training-Steps)
+    - [阶段一：Warmup 建立重建能力 Phase 1: Warmup](#第一阶段-Phase-1)
+    - [阶段二：Adversarial 显式噪声诱导 Phase 2: Adversarial](#第二阶段-Phase-2)
+    - [阶段三：Hardening 门限收紧 Phase 3: Hardening](#第三阶段-Phase-3)
+- [项目声明 Project Statement](#项目声明-Project-Statement)
+- [许可证 License](#许可证-Lisense)
 
+<h2 id="project">项目结构 Project Structure</h2>
 
-* [使用方法 Getting Started](https://www.google.com/search?q=%23%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-getting-started)
-* [安装方法 Installation](https://www.google.com/search?q=%23%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95-installation)
-* [训练步骤 Training Steps](https://www.google.com/search?q=%23%E8%AE%AD%E7%BB%83%E6%AD%A5%E9%AA%A4-training-steps)
-* [阶段一：Warmup 建立重建能力 Phase 1: Warmup](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%B8%80warmup-%E5%BB%BA%E7%AB%8B%E9%87%8D%E5%BB%BA%E8%83%BD%E5%8A%9B-phase-1-warmup)
-* [阶段二：Adversarial 显式噪声诱导 Phase 2: Adversarial](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%BA%8Cadversarial-%E6%98%BE%E5%BC%8F%E5%99%AA%E5%A3%B0%E8%AF%B1%E5%AF%BC-phase-2-adversarial)
-* [阶段三：Hardening 门限收紧 Phase 3: Hardening](https://www.google.com/search?q=%23%E9%98%B6%E6%AE%B5%E4%B8%89hardening-%E9%97%A8%E9%99%90%E6%94%B6%E7%B4%A7-phase-3-hardening)
+<h3 id="project-file">项目文件 Project Files</h3>
 
-
-* [测试与可视化 Testing & Visualization](https://www.google.com/search?q=%23%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%8F%AF%E8%A7%86%E5%8C%96-testing--visualization)
-
-
-* [项目声明 Project Statement](https://www.google.com/search?q=%23%E9%A1%B9%E7%9B%AE%E5%A3%B0%E6%98%8E-project-statement)
-* [友情链接 Related Links](https://www.google.com/search?q=%23%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5-related-links)
-* [许可证 License](https://www.google.com/search?q=%23%E8%AE%B8%E5%8F%AF%E8%AF%81-license)
-
-由于本项目主要以交互式 Jupyter Notebook 的形式呈现，代码和训练逻辑被高度集成在单一文件中。
+├─ MINIST_Neural SS_noise_(5,5)-.ipynb (集成核心逻辑、训练与可视化的 Jupyter Notebook) 
 
 
 
 
-Since this project is mainly presented in the form of an interactive Jupyter Notebook, the code and training logic are highly integrated into a single file.
-
-├─ MINIST_Neural SS_noise_(5,5)-.ipynb (核心代码与展示 Jupyter Notebook) 
-
-
-
-该 Notebook 内部包含以下核心逻辑模块（Cells）：
+ ├─ 0. 全局配置 (Global Configuration) 
 
 
 
 
-The Notebook contains the following core logical modules (Cells):
-
- ├─ 0. 全局配置与设备设定 (Global configuration and device setting) 
- ├─ 1. 模型基础组件定义 (Basic model components: ResidualBlock) 
- ├─ 2. Encoder 架构 (Encoder architecture for secret splitting) 
- ├─ 3. Decoder & Adversary 架构 (Decoder/Adversary architecture for reconstruction) 
- ├─ 4. 训练逻辑与三阶段策略 (Training logic and three-phase strategy) 
- ├─ 5. 测试与可视化模块 (Testing and visualization module) 
-
-首先，拉取本项目到本地，并确保您的环境中安装了 Jupyter 运行环境。
+ ├─ 1. 模型基础组件 (Basic Components: ResidualBlock) 
 
 
 
 
-First, pull the project to the local machine, and ensure that the Jupyter environment is installed in your environment.
-
-```
-$ git clone <https://github.com/Astrea-296111/Neural-Network-VSS>
-$ cd <Neural-Network-VSS/>
-
-```
-
-接着，安装本项目所需的依赖包。建议使用支持 CUDA 的 PyTorch 环境以加速训练。
+ ├─ 2. Encoder 架构 (Encoder: Secret Splitting) 
 
 
 
 
-Next, install the dependencies required for this project. It is recommended to use a PyTorch environment that supports CUDA to accelerate training.
+ ├─ 3. Decoder & Adversary 架构 (Decoder & Adversary) 
+
+
+
+
+ ├─ 4. 训练逻辑与三阶段策略 (Training Logic) 
+
+
+
+
+ ├─ 5. 测试与可视化 (Testing & Visualization) 
+
+<h2 id="get-start">使用方法 Getting Started</h2>
+
+<h3 id="install">安装方法 Installation</h3>
+
+首先，克隆本项目并安装必要的 Python 库（建议使用 CUDA 加速）：
+
+
+
+
+First, clone the project and install necessary Python libraries (CUDA acceleration recommended):
 
 ```
-$ pip install torch torchvision matplotlib numpy
+$ git clone https://github.com/Astrea-296111/Neural-Network-VSS
+$ pip install torch torchvision matplotlib numpy tqdm
 
 ```
 
-最后，启动 Jupyter Notebook 并打开 `MINIST_Neural SS_noise_(5,5)-.ipynb` 文件即可直接运行。
+可通过全局配置模块自由选择参数k和n
+
+
+```python
+N_SHARES = 5           # n (total shares)
+T_THRESH = 5           # t (threshold)
+D_MODEL = 256          # d_model
+width=8
+D_SHARE = width*width        # d_share 大幅降低门限
+IMG_SIZE = 28 * 28     # MNIST 展开维度
+
+BATCH_SIZE = 128
+EPOCHS_PHASE1 = 10     # Warmup
+EPOCHS_PHASE2 = 30     # Adversarial
+EPOCHS_PHASE3 = 10     # Hardening
+```
+
+<h3 id="example">代码示例 Code Example</h3>
+
+本项目使用残差模块（ResidualBlock）构建 Encoder 和 Decoder。以下是项目中的核心模型定义示例：
 
 
 
 
-Finally, start Jupyter Notebook and open the `MINIST_Neural SS_noise_(5,5)-.ipynb` file to run it directly.
+This project uses ResidualBlock to build the Encoder and Decoder. The following is an example of the core model definition:
 
-本工具的核心在于 $(n, t) = (5, 5)$ 的秘密共享机制设定，其中 `N_SHARES = 5`，`T_THRESH = 5`。模型采用了创新的三阶段训练策略（Three-Phase Curriculum Strategy）：
+```python
+# 模型组件示例：残差块 (ResidualBlock)
+class ResidualBlock(nn.Module):
+    def __init__(self, in_channels, out_channels):
+        super(ResidualBlock, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels, out_channels, 3, padding=1)
+        self.bn1 = nn.BatchNorm2d(out_channels)
+        self.relu = nn.ReLU(inplace=True)
+        self.conv2 = nn.Conv2d(out_channels, out_channels, 3, padding=1)
+        self.bn2 = nn.BatchNorm2d(out_channels)
 
+    def forward(self, x):
+        residual = x
+        out = self.relu(self.bn1(self.conv1(x)))
+        out = self.bn2(self.conv2(out))
+        out += residual
+        return self.relu(out)
 
+```
 
+<h3 id="Training">训练步骤 Training Steps</h3>
 
-The core of this tool lies in the $(n, t) = (5, 5)$ secret sharing mechanism setting, where `N_SHARES = 5` and `T_THRESH = 5`. The model adopts an innovative Three-Phase Curriculum Strategy:
-
-在第一阶段，主要训练 Encoder 和 Decoder 的基础编解码能力。
-
-
-
-
-In the first phase, the basic encoding and decoding capabilities of Encoder and Decoder are mainly trained.
-
-* **目标**：使用所有的 $n$ 个 shares 重建原始图像。
-* **损失函数**：重构损失（MSE Loss） + 多样性正则化（Diversity Loss, `-log det(Sh * Sh^T / n)`），用于确保生成的份额之间相互独立。
-
-这是本项目最核心的对抗阶段，引入了独立的对抗网络（Adversary D）。
-
-
-
-
-This is the core adversarial phase of the project, introducing an independent adversarial network (Adversary D).
-
-* **逻辑**：Adversary 尝试从小于门限值 ($k < t$) 的份额中恢复原图。
-* **惩罚机制**：Encoder 迫使 Adversary 输出均匀分布的随机噪声（`noise_target = torch.rand_like(data)`）。随着 Epoch 的增加，对抗损失权重 `lambda_adv` 将动态增加。
-
-（注：代码中默认注释，可视需求开启）
+本项目采用三阶段课程学习策略，以平衡重建精度与安全性。
 
 
 
 
-(Note: Commented out by default in the code, can be turned on as needed)
-
-* **目标**：使用 Curriculum Schedule，让可用于重建的份额数量 $k$ 随着训练进行，从 $n$ 逐步收缩到目标门限 $t$，进一步增强模型的鲁棒性。
-
-执行第 5 个 Cell 中的 `test_and_visualize()` 函数。程序会自动提取测试集数据并生成 $(10 \times 11)$ 的对比网格图像。
+This project adopts a three-phase curriculum learning strategy to balance reconstruction accuracy and security.
 
 
+<h4 id="phase_1">第一阶段 Phase 1</h4>
+
+在第一阶段，模型学习如何将图像分割成 k 个份额并完整重建。
 
 
-Execute the `test_and_visualize()` function in the 5th cell. The program will automatically extract the test set data and generate a $(10 \times 11)$ comparison grid image.
 
-* **展示内容**：包含原图 (Original)、5个独立份额 (Share 1-5)，以及使用不同数量份额（$k=1$ 到 $5$）的重建结果。
-* **预期效果**：当 $k < 5$ 时，重建图像应显示为无法辨认的白噪声；当 $k = 5$ 时，完美重建原图。
+
+In the first phase, the model learns how to split an image into k shares and reconstruct it completely.
+
+* **Loss**: `MSE(recon, original) + 0.1 * diversity_loss`
+* **目的 (Aim)**: 确保所有份额组合后能恢复清晰原图。
+
+<h4 id="phase_2">第二阶段 Phase 2</h4>
+
+引入对抗网络（Adversary），迫使模型在份额少于门限值时输出类似均匀分布的噪声。
+
+
+
+
+Introduce an Adversary to force the model to output noise-like images when the number of shares is less than the threshold.
+
+```python
+# 噪声诱导逻辑 (Noise Induction Logic)
+# 当 k < T_THRESH 时，强制输出目标为随机噪声
+noise_target = torch.rand_like(data).to(DEVICE)
+adv_out = adversary(low_k_shares)
+loss_adv = criterion_mse(adv_out, noise_target)
+
+```
+
+<h4 id="phase_3">第三阶段 Phase 3</h4>
+
+进一步增强门限的严格性，使模型在t份share时仍无法获取任何有效信息。
+
+
+```python
+    for epoch in range(epochs):
+        # Curriculum Schedule: 随 epoch 降低 k
+        k_curr = max(T_THRESH, N_SHARES - int((N_SHARES - T_THRESH) * (epoch / (epochs * 0.5))))
+        
+        total_loss = 0
+        for batch_idx, (data, _) in enumerate(train_loader):
+            data = data.to(DEVICE)
+            
+            opt_E.zero_grad()
+            opt_D_recon.zero_grad()
+            
+            shares = encoder(data)
+            
+            # 随机挑选 k_curr 个 shares 给 Decoder
+            indices = torch.randperm(N_SHARES)[:k_curr]
+            shares_subset = shares[:, indices, :]
+            
+            reconstructed = decoder(shares_subset)
+            l_recon = criterion_mse(reconstructed, data)
+            l_div = diversity_loss(shares)
+            
+            loss = l_recon + gamma * l_div
+            loss.backward()
+            
+            opt_E.step()
+            opt_D_recon.step()
+            total_loss += loss.item()
+
+```
+
+
+Further enhance the strictness of the threshold, making it impossible to obtain any valid information when $k$.
+
+
+<h2 id="statement">项目声明 Project Statement</h2>
 
 本项目的作者及单位：
 
@@ -153,16 +225,13 @@ The author and affiliation of this project:
 
 If you use this project for the experiment of the paper, you can cite this project:
 
-```
-@misc{neuralss,
-  author       = {Songyi, Liao},
-  title        = {MINIST-Neural-SS-Noise: An Adversarial Neural Secret Sharing implementation},
-  year         = {2026},
-  howpublished = {\url{https://github.com/Astrea-296111/Neural-Network-VSS}}
-}
 
-```
+    Author: Xiaotian Wu, Songyi Liao
+    Project: [MINIST-Neural-SS-Noise](https://github.com/Astrea-296111/Neural-Network-VSS)
+    
+<h2 id="license">许可证 Lisense</h2>
 
-1. [PyTorch Official Documentation](https://www.google.com/search?q=https://pytorch.org/docs/stable/index.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[MIT](https://www.google.com/search?q=LICENSE) © 2026 [廖松毅 Songyi Liao]
+本项目受 MIT 协议保护，详细内容请参阅 [LICENSE](https://github.com/Astrea-296111/Neural-Network-VSS/LICENSE).
+Copyright (c) 2026 Astrea
